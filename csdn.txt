@@ -1,0 +1,24 @@
+小目标检测数据增强方法：
+我们知道目标检测数据集中数据和标签需要一一对应，一旦对图像数据做了增强处理后（目标bbox发生改变），标签也需要做相应的修改。
+比较work的数据增强方法：
+Mosaic
+MixUp
+Resize
+LetterBox
+RandomCrop
+RandomFlip
+RandomHSV
+RandomBlur
+RandomNoise
+RandomAffine
+RandomTranslation
+Normalize
+ImageToTensor
+
+这些都是很容易就能嵌入到我们的训练框架中，下面介绍一种比较有用的方法，对小目标和目标背景缺乏的场景下涨点明显。也是一种解决样本少，不均衡的方法。
+
+如下图，图片只含有一个目标，我们可以将其中一张图里的目标扣下来，贴到另一张图上去，熟悉目标检测的都知道当我们训练业务场景的数据时，这样增强对模型的泛化能力的提升是很积极的， 下面具体讲解如何实现。
+
+此方法是在yolo标签格式下完成的，如果你们的数据标签是VOC或coco格式，需先转换成yolo格式。
+
+
